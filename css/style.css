@@ -138,23 +138,26 @@ body{
 
 /*___________________________________________________________*/
 
-body{
-  section{
-    width: 70%;
-    max-width: 400px;
-    margin: 0 auto;
+
+section{
+  width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  .row{
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
     height: 100vh;
-    .row{
-      align-items: center;
-      flex-flow: row wrap;
-      height: 100vh;
+    .column{
+      width: fit-content;
     }
   }
 }
+
 .card{
   position: relative;
   height: 400px;
-  width: 100%;
+  width: 350px;
   margin: 10px 0;
   transition: ease all 2.3s;
   perspective: 1200px;
@@ -233,18 +236,6 @@ body{
       transition: ease all 2.3s;
       z-index:3;
       font-size: 3em;
-      transform: translateZ(0px);
-    }
-    .price{
-      font-weight: 200;
-      position: absolute;
-      top: 55px;
-      right: 50px;
-      color: white;
-      transform-style: preserve-3d;
-      transition: ease all 2.3s;
-      z-index:4;
-      font-size: 2em;
       transform: translateZ(0px);
     }
   }
