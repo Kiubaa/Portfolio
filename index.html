@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivan Giraldo — Full Stack Developer & GIS Specialist</title>
+  <meta name="description" content="Full Stack Developer with deep expertise in geospatial data platforms. 4 years building production-ready systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rich-black: #000F0E;
+      --dark-green: #052319;
+      --bangladesh: #1C3C47;
+      --meadow: #2CB876;
+      --caribbean: #00D67C;
+      --white: #F5FFF9;
+      --muted: rgba(245,255,249,0.55);
+      --accent: #00D67C;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--rich-black); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* LANG BUTTON */
+    .lang-btn {
+      position: fixed; top: 24px; right: 28px; z-index: 999;
+      background: transparent; border: 1px solid rgba(0,214,124,0.4);
+      color: var(--accent); font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em; padding: 8px 16px; border-radius: 2px; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lang-btn:hover { background: rgba(0,214,124,0.1); border-color: var(--accent); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(0,15,14,0.95) 0%, transparent 100%);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 120px 60px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(44,184,118,0.07) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image: linear-gradient(rgba(0,214,124,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,214,124,1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-left { position: relative; z-index: 1; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      color: var(--accent); margin-bottom: 28px;
+    }
+    .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+
+    h1 {
+      font-family: 'DM Serif Display', serif; font-size: clamp(52px, 6vw, 80px);
+      line-height: 1.0; color: var(--white); margin-bottom: 12px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-subtitle {
+      font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.15em;
+      color: var(--muted); margin-bottom: 28px; text-transform: uppercase;
+    }
+    .hero-desc { font-size: 15px; line-height: 1.75; color: var(--muted); max-width: 420px; margin-bottom: 44px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      padding: 14px 32px; background: var(--accent); color: var(--rich-black);
+      border: none; border-radius: 2px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--meadow); transform: translateY(-2px); }
+    .btn-outline {
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      padding: 14px 32px; background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* PHOTO */
+    .hero-right { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
+    .photo-wrap { position: relative; width: 340px; height: 420px; cursor: pointer; }
+    .photo-frame { width: 100%; height: 100%; border-radius: 4px; overflow: hidden; position: relative; }
+
+    .photo-real {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1a4a3a 0%, #0d2e22 50%, #052319 100%);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.5s ease;
+      /* REPLACE: set background-image: url('your-photo.jpg'); background-size: cover; background-position: center; */
+    }
+    .photo-avatar {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #002a1a 0%, #001a10 100%);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.5s ease;
+      /* REPLACE: set background-image: url('your-avatar.png'); background-size: cover; */
+    }
+    .photo-wrap:hover .photo-real { opacity: 0; }
+    .photo-wrap:hover .photo-avatar { opacity: 1; }
+
+    .photo-placeholder { font-family: 'DM Serif Display', serif; font-size: 72px; color: rgba(0,214,124,0.3); font-style: italic; }
+    .photo-tag {
+      position: absolute; bottom: -16px; right: -16px;
+      background: var(--accent); color: var(--rich-black);
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      padding: 10px 16px; border-radius: 2px;
+    }
+    .photo-hint { position: absolute; top: 16px; left: 16px; font-family: 'Syne', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: rgba(0,214,124,0.5); }
+
+    /* STATS */
+    .stats-bar {
+      background: var(--dark-green); padding: 40px 60px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(0,214,124,0.1); border-bottom: 1px solid rgba(0,214,124,0.1);
+    }
+    .stat { padding: 0 32px; border-right: 1px solid rgba(0,214,124,0.15); }
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 42px; color: var(--accent); line-height: 1; }
+    .stat-label { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin-top: 6px; text-transform: uppercase; }
+
+    /* SECTIONS */
+    section { padding: 100px 60px; }
+
+    .section-tag {
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--accent); }
+
+    h2 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 52px); color: var(--white); margin-bottom: 16px; line-height: 1.1; }
+    h2 em { font-style: italic; color: var(--accent); }
+    .section-intro { font-size: 15px; color: var(--muted); max-width: 560px; line-height: 1.75; margin-bottom: 60px; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .project-card {
+      background: var(--dark-green); padding: 44px; position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .project-card:hover { background: #0a3028; }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-num { font-family: 'DM Serif Display', serif; font-size: 64px; color: rgba(0,214,124,0.08); position: absolute; top: 20px; right: 28px; line-height: 1; }
+    .project-type { font-family: 'Syne', sans-serif; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+    .project-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+    .project-desc { font-size: 13px; line-height: 1.7; color: var(--muted); margin-bottom: 28px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .tag { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; padding: 5px 12px; border: 1px solid rgba(0,214,124,0.25); color: var(--accent); border-radius: 2px; }
+    .project-link { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
+    .project-link::after { content: '→'; transition: transform 0.3s; }
+    .project-card:hover .project-link::after { transform: translateX(4px); }
+
+    /* STACK */
+    .stack-section { background: var(--dark-green); }
+    .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .stack-item { background: var(--rich-black); padding: 32px 28px; }
+    .stack-cat { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+    .stack-list { display: flex; flex-direction: column; gap: 8px; }
+    .stack-pill { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .stack-pill::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* CONTACT */
+    .contact-section { text-align: center; padding: 100px 60px; position: relative; overflow: hidden; }
+    .contact-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(44,184,118,0.07) 0%, transparent 70%); }
+    .contact-section h2, .contact-section p { position: relative; z-index: 1; }
+    .contact-section p { font-size: 15px; color: var(--muted); margin: 16px auto 48px; max-width: 440px; line-height: 1.75; }
+    .contact-links { position: relative; z-index: 1; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .contact-link {
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      padding: 14px 28px; border: 1px solid rgba(0,214,124,0.3); color: var(--muted);
+      border-radius: 2px; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-link i { font-size: 16px; }
+
+    /* FOOTER */
+    footer { padding: 24px 60px; border-top: 1px solid rgba(0,214,124,0.1); display: flex; justify-content: space-between; align-items: center; }
+    .footer-text { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 0.08em; color: rgba(245,255,249,0.25); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { gap: 20px; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; text-align: center; }
+      .hero-right { display: none; }
+      .hero-tag { justify-content: center; }
+      .hero-desc { margin: 0 auto 44px; }
+      .hero-cta { justify-content: center; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 24px; }
+      .stat { padding: 0; border-right: none; }
+      section { padding: 60px 24px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 28px; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .stack-grid { grid-template-columns: 1fr; }
+      .contact-links { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="lang-btn" onclick="toggleLang()" id="langBtn">ES</button>
+
+  <nav>
+    <a class="nav-logo" href="#">IG<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about" data-en="About" data-es="Sobre mí">About</a>
+      <a href="#projects" data-en="Projects" data-es="Proyectos">Projects</a>
+      <a href="#stack" data-en="Stack" data-es="Stack">Stack</a>
+      <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-left">
+      <div class="hero-tag" data-en="Available for remote work" data-es="Disponible para trabajo remoto">Available for remote work</div>
+      <h1>Ivan<br><em>Giraldo</em></h1>
+      <div class="hero-subtitle" data-en="Full Stack Developer · GIS Specialist" data-es="Desarrollador Full Stack · Especialista GIS">Full Stack Developer · GIS Specialist</div>
+      <p class="hero-desc" data-en="4 years building production-ready systems with deep expertise in geospatial data platforms. Strong backend focus, high standards, real results." data-es="4 años construyendo sistemas en producción con experiencia profunda en plataformas de datos geoespaciales. Enfoque en backend, altos estándares y resultados reales.">4 years building production-ready systems with deep expertise in geospatial data platforms. Strong backend focus, high standards, real results.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary" data-en="View Projects" data-es="Ver Proyectos">View Projects</a>
+        <a href="#contact" class="btn-outline" data-en="Get in touch" data-es="Contáctame">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="photo-wrap">
+        <div class="photo-frame">
+          <div class="photo-real">
+            <!-- REPLACE: Remove the span below and set style="background-image: url('your-photo.jpg'); background-size: cover; background-position: center top;" on .photo-real -->
+            <span class="photo-placeholder">IG</span>
+          </div>
+          <div class="photo-avatar">
+            <!-- REPLACE: Remove the SVG below and set style="background-image: url('your-avatar.png'); background-size: cover;" on .photo-avatar -->
+            <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="90" cy="90" r="90" fill="#001a10"/>
+              <circle cx="90" cy="72" r="30" fill="rgba(0,214,124,0.15)" stroke="rgba(0,214,124,0.4)" stroke-width="1"/>
+              <path d="M30 160 Q90 110 150 160" fill="rgba(0,214,124,0.1)" stroke="rgba(0,214,124,0.4)" stroke-width="1"/>
+              <circle cx="90" cy="72" r="18" fill="rgba(0,214,124,0.2)"/>
+              <text x="90" y="78" text-anchor="middle" font-family="DM Serif Display, serif" font-size="18" fill="rgba(0,214,124,0.7)" font-style="italic">IG</text>
+              <circle cx="60" cy="50" r="3" fill="#00D67C" opacity="0.4"/>
+              <circle cx="130" cy="40" r="2" fill="#00D67C" opacity="0.3"/>
+              <circle cx="145" cy="110" r="4" fill="#00D67C" opacity="0.2"/>
+              <circle cx="35" cy="120" r="2" fill="#00D67C" opacity="0.3"/>
+              <line x1="60" y1="50" x2="130" y2="40" stroke="rgba(0,214,124,0.1)" stroke-width="0.5"/>
+              <line x1="130" y1="40" x2="145" y2="110" stroke="rgba(0,214,124,0.1)" stroke-width="0.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="photo-tag" data-en="← hover to explore" data-es="← pasa el mouse">← hover to explore</div>
+        <div class="photo-hint">Colombia 🌍</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">4+</div>
+      <div class="stat-label" data-en="Years of experience" data-es="Años de experiencia">Years of experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2M+</div>
+      <div class="stat-label" data-en="Records processed" data-es="Registros procesados">Records processed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label" data-en="Systems in production" data-es="Sistemas en producción">Systems in production</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5GB</div>
+      <div class="stat-label" data-en="Largest file processed" data-es="Archivo más grande procesado">Largest file processed</div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="section-tag" data-en="About me" data-es="Sobre mí">About me</div>
+    <h2 data-en="Backend <em>engineer</em> with a spatial edge" data-es="Ingeniero <em>backend</em> con visión espacial">Backend <em>engineer</em> with a spatial edge</h2>
+    <p class="section-intro" data-en="I build systems that handle complexity — millions of geospatial records, heavy files, non-technical users. I started with PHP and moved to Python for its data ecosystem. Comfortable from database design to React frontends, deployed on Linux VPS environments. I work with Agile methodologies and Git on every project." data-es="Construyo sistemas que manejan complejidad: millones de registros geoespaciales, archivos pesados, usuarios no técnicos. Empecé con PHP y migré a Python por su ecosistema de datos. Cómodo desde el diseño de bases de datos hasta frontends en React, desplegados en entornos Linux VPS. Trabajo con metodologías ágiles y Git en cada proyecto.">I build systems that handle complexity — millions of geospatial records, heavy files, non-technical users. I started with PHP and moved to Python for its data ecosystem. Comfortable from database design to React frontends, deployed on Linux VPS environments. I work with Agile methodologies and Git on every project.</p>
+  </section>
+
+  <section id="projects" style="padding-top: 0;">
+    <div style="margin-bottom: 40px;">
+      <div class="section-tag" data-en="Featured projects" data-es="Proyectos destacados">Featured projects</div>
+      <h2 data-en="Work that <em>ships</em>" data-es="Trabajo que <em>llega</em> a producción">Work that <em>ships</em></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-type" data-en="Smart Agriculture · Internal Product" data-es="Agricultura Inteligente · Producto Interno">Smart Agriculture · Internal Product</div>
+        <div class="project-title">Piwot</div>
+        <p class="project-desc" data-en="Geospatial platform for palm and banana crop owners. Renders soil health heatmaps, productivity per plot and drainage channels from files up to 5 GB via a Web Map Tiles pipeline." data-es="Plataforma geoespacial para propietarios de cultivos de palma y banano. Renderiza mapas de calor de salud del suelo, productividad por lote y canales de drenaje desde archivos de hasta 5 GB.">Geospatial platform for palm and banana crop owners. Renders soil health heatmaps, productivity per plot and drainage channels from files up to 5 GB via a Web Map Tiles pipeline.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Django</span>
+          <span class="tag">PostGIS</span>
+          <span class="tag">React</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a class="project-link" href="https://mipiwot.com" target="_blank" rel="noopener" data-en="View live" data-es="Ver en vivo">View live</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-type" data-en="Business Intelligence · Governmental" data-es="Inteligencia Empresarial · Gubernamental">Business Intelligence · Governmental</div>
+        <div class="project-title" data-en="Business Intelligence Geovisor" data-es="Geovisor de Inteligencia Empresarial">Business Intelligence Geovisor</div>
+        <p class="project-desc" data-en="Interactive map of 2M+ Colombian businesses for a governmental trade organization. Dynamic clustering, sociodemographic layers at national block level, and a client/supplier intelligence tool." data-es="Mapa interactivo de más de 2 millones de empresas colombianas para un ente gubernamental. Clustering dinámico, capas sociodemográficas a nivel de manzana nacional y herramienta de inteligencia comercial.">Interactive map of 2M+ Colombian businesses for a governmental trade organization. Dynamic clustering, sociodemographic layers at national block level, and a client/supplier intelligence tool.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">PostGIS</span>
+          <span class="tag">React</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a class="project-link" data-en="Confidential" data-es="Confidencial">Confidential</a>
+      </div>
+
+      <div class="project-card" style="grid-column: 1 / -1;">
+        <div class="project-num">03</div>
+        <div class="project-type" data-en="Personal Tool · Custom Algorithm" data-es="Herramienta Propia · Algoritmo Personalizado">Personal Tool · Custom Algorithm</div>
+        <div class="project-title" data-en="Colombian Address Normalizer & Geocoder" data-es="Normalizador y Geocodificador de Direcciones">Colombian Address Normalizer & Geocoder</div>
+        <p class="project-desc" data-en="Custom pipeline that normalized and geocoded 2M+ free-text Colombian addresses — a 6-month manual process automated end-to-end. Built a spatial reference database from scratch combining national block shapefiles and OpenStreetMap street nomenclature via buffer and intersect operations." data-es="Pipeline personalizado que normalizó y geocodificó más de 2 millones de direcciones colombianas en texto libre — un proceso manual de 6 meses automatizado de punta a punta. Base de datos espacial construida desde cero combinando shapefiles de manzanas nacionales y nomenclatura de OpenStreetMap.">Custom pipeline that normalized and geocoded 2M+ free-text Colombian addresses — a 6-month manual process automated end-to-end. Built a spatial reference database from scratch combining national block shapefiles and OpenStreetMap street nomenclature via buffer and intersect operations.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">GeoPandas</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">GIS</span>
+        </div>
+        <a class="project-link" data-en="Documentation only — proprietary algorithm" data-es="Solo documentación — algoritmo propietario">Documentation only — proprietary algorithm</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="stack-section">
+    <div class="section-tag" data-en="Tech stack" data-es="Stack tecnológico">Tech stack</div>
+    <h2 data-en="Tools I <em>trust</em>" data-es="Herramientas en las que <em>confío</em>">Tools I <em>trust</em></h2>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-cat">Backend</div>
+        <div class="stack-list">
+          <span class="stack-pill">Python · Django · FastAPI</span>
+          <span class="stack-pill">PHP</span>
+          <span class="stack-pill">REST APIs</span>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-cat">Database</div>
+        <div class="stack-list">
+          <span class="stack-pill">PostgreSQL</span>
+          <span class="stack-pill">PostGIS</span>
+          <span class="stack-pill" data-en="Spatial data modeling" data-es="Modelado de datos espaciales">Spatial data modeling</span>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-cat">GIS & Geospatial</div>
+        <div class="stack-list">
+          <span class="stack-pill" data-en="Shapefile processing" data-es="Procesamiento de shapefiles">Shapefile processing</span>
+          <span class="stack-pill">Web Map Tiles</span>
+          <span class="stack-pill">GeoPandas · OpenStreetMap</span>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-cat">Frontend</div>
+        <div class="stack-list">
+          <span class="stack-pill">React · JavaScript</span>
+          <span class="stack-pill">HTML · CSS</span>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-cat" data-en="Infrastructure" data-es="Infraestructura">Infrastructure</div>
+        <div class="stack-list">
+          <span class="stack-pill">Docker · Docker Compose</span>
+          <span class="stack-pill">Linux · Ubuntu VPS</span>
+          <span class="stack-pill">Git</span>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-cat" data-en="Methodologies" data-es="Metodologías">Methodologies</div>
+        <div class="stack-list">
+          <span class="stack-pill">Scrum · Kanban</span>
+          <span class="stack-pill" data-en="Technical leadership" data-es="Liderazgo técnico">Technical leadership</span>
+          <span class="stack-pill" data-en="Agile development" data-es="Desarrollo ágil">Agile development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="contact-bg"></div>
+    <div class="section-tag" style="justify-content: center;" data-en="Get in touch" data-es="Contacto">Get in touch</div>
+    <h2 data-en="Let's build something <em>great</em>" data-es="Construyamos algo <em>grande</em>">Let's build something <em>great</em></h2>
+    <p data-en="Open to remote opportunities worldwide. Whether it's a complex backend challenge, a geospatial system, or a full product — let's talk." data-es="Disponible para oportunidades remotas a nivel mundial. Ya sea un reto de backend complejo, un sistema geoespacial o un producto completo, hablemos.">Open to remote opportunities worldwide. Whether it's a complex backend challenge, a geospatial system, or a full product — let's talk.</p>
+    <div class="contact-links">
+      <!-- REPLACE: Update href and text with your real info -->
+      <a class="contact-link" href="mailto:your@email.com"><i class="ti ti-mail" aria-hidden="true"></i> your@email.com</a>
+      <a class="contact-link" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener"><i class="ti ti-brand-linkedin" aria-hidden="true"></i> LinkedIn</a>
+      <a class="contact-link" href="https://github.com/yourusername" target="_blank" rel="noopener"><i class="ti ti-brand-github" aria-hidden="true"></i> GitHub</a>
+      <a class="contact-link" href="tel:+57000000000"><i class="ti ti-phone" aria-hidden="true"></i> +57 000 000 0000</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-text">Ivan Giraldo © 2025</div>
+    <div class="footer-text" data-en="Colombia · Open to remote" data-es="Colombia · Disponible remoto">Colombia · Open to remote</div>
+  </footer>
+
+  <script>
+    let lang = 'en';
+
+    function toggleLang() {
+      lang = lang === 'en' ? 'es' : 'en';
+      document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (el.tagName === 'H2') { el.innerHTML = text; }
+        else { el.textContent = text; }
+      });
+    }
+  </script>
+</body>
+</html>
